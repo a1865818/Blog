@@ -1,0 +1,637 @@
+$lightGreen: #b9e7e7;
+$primaryColor: #3498db; 
+$secondaryColor: #2ecc71; 
+$backgroundColor: #f5f5f5; 
+$textColor: #333; 
+$borderColor: #ddd; 
+$shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+$spacing: 10px;
+$fontFamily: 'Roboto', sans-serif; 
+$inputBackground: #ffffff; 
+$inputFocusBorder: $primaryColor; 
+$buttonPrimary: $primaryColor;
+$buttonSecondary: $secondaryColor;
+$borderRadius: 8px; 
+$fontSizeSmall: 12px;
+$fontSizeMedium: 14px;
+$fontSizeLarge: 16px;
+
+// Import the font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+body {
+  font-family: $fontFamily; 
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  .container {
+    width: 90%; 
+    max-width: 1400px; 
+
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+// Styles for the login and register sections
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $backgroundColor; 
+
+  .auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background-color: $lightGreen; 
+    border-radius: 10px; 
+    box-shadow: $shadow; 
+  }
+
+  h1 {
+    font-family: $fontFamily; // Apply the new font family to h1
+    font-size: 20px;
+    color: teal;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+
+    input {
+      padding: 10px;
+      border: none;
+      border-bottom: 1px solid gray;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      background-color: teal;
+      cursor: pointer;
+      color: white;
+    }
+
+    p {
+      font-size: 12px;
+      color: red;
+      text-align: center;
+    }
+
+    span {
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+}
+
+// Styles for the navbar
+.navbar {
+ background-color: white;
+ position: relative;
+ top: 0;
+ z-index: 1000;
+ padding: 10px 0; 
+ 
+ .container {
+   padding: 10px 20px; 
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   max-width: 1400px;
+   margin: 0 auto;
+
+   .logo {
+     img {
+       width: 120px;
+       height: auto;
+       transition: $transition;
+       
+       &:hover {
+         opacity: 0.8;
+       }
+     }
+   }
+
+   .links {
+     display: flex;
+     align-items: center;
+     gap: 25px;
+
+     .link {
+       text-decoration: none;
+       position: relative;
+       
+       h6 {
+         font-family: $fontFamily; // Apply the new font family to h6
+         font-size: 14px;
+         font-weight: 500;
+         color: $textColor;
+         margin: 0;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         transition: $transition;
+
+         &:after {
+           content: '';
+           position: absolute;
+           width: 0;
+           height: 2px;
+           bottom: -5px;
+           left: 0;
+           background-color: $primaryColor;
+           transition: $transition;
+         }
+
+         &:hover {
+           color: $primaryColor;
+           
+           &:after {
+             width: 100%;
+           }
+         }
+       }
+     }
+
+     span {
+       cursor: pointer;
+       font-size: 14px;
+       color: $textColor;
+       transition: $transition;
+
+       &:hover {
+         color: $primaryColor;
+       }
+     }
+   }
+
+   .others {
+     display: flex;
+     align-items: center;
+     gap: 20px;
+
+     .user-section {
+       display: flex;
+       align-items: center;
+       gap: 15px;
+     }
+
+     span.username {
+       font-weight: 700; 
+       color: $primaryColor; 
+       font-size: 26px;
+       padding: 5px 10px; 
+       border-radius: 5px; 
+     }
+
+     .write {
+       background-color: $lightGreen;
+       padding: 8px 20px;
+       border-radius: 25px;
+       transition: $transition;
+       border: 1px solid transparent;
+       
+       .link {
+         text-decoration: none;
+         color: $textColor;
+         font-size: 14px;
+         font-weight: 500;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+       }
+
+       &:hover {
+         background-color: white;
+         border-color: $lightGreen;
+         transform: translateY(-2px);
+         box-shadow: $shadow;
+       }
+     }
+
+     .login, .logout {
+       background-color: white;
+       padding: 8px 20px;
+       border-radius: 25px;
+       transition: $transition;
+       border: 1px solid $lightGreen;
+       
+       .link, span {
+         text-decoration: none; 
+         color: black; 
+         font-size: 14px;
+         font-weight: 500;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+       }
+
+       &:hover {
+         background-color: $lightGreen;
+         border-color: transparent;
+         transform: translateY(-2px);
+         box-shadow: $shadow;
+         .link, span {
+           color: white;
+         }
+       }
+     }
+
+     .auth-links {
+       span, .link {
+         cursor: pointer;
+         color: $textColor;
+         font-size: 14px;
+         font-weight: 500;
+         text-decoration: none;
+         transition: $transition;
+
+         &:hover {
+           color: $primaryColor;
+         }
+       }
+     }
+   }
+   
+ }
+}
+
+// Media query for responsive design
+@media (max-width: 768px) {
+ .navbar {
+   .container {
+     .links {
+       gap: 15px;
+       
+       h6 {
+         font-size: 12px;
+       }
+     }
+
+     .others {
+       gap: 10px;
+       
+       .write {
+         padding: 6px 15px;
+         
+         .link {
+           font-size: 12px;
+         }
+       }
+     }
+   }
+ }
+}
+
+// Styles for the footer
+footer {
+  margin-top: 125px;
+  bottom: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  font-size: 14px; 
+
+  span {
+    font-family: $fontFamily; // Apply the new font family to span
+    text-align: center; 
+    font-size: 18px; 
+    color: $textColor; 
+    font-weight: 500; 
+  }
+
+  img {
+    height: 50px;
+    margin-right: 10px; 
+  }
+}
+
+// Styles for the home page
+.home {
+  .posts {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+
+    .post {
+      display: flex;
+      gap: 100px;
+
+      &:nth-child(2n + 1) {
+        flex-direction: row-reverse;
+      }
+
+      .img {
+        flex: 2;
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 100%;
+          height: 100%;
+          background-color: lightgoldenrodyellow;
+          position: absolute;
+          top: 20px;
+          left: -20px;
+          z-index: -1;
+        }
+
+        img {
+          width: 100%;
+          max-height: 400px;
+          object-fit: cover;
+        }
+      }
+
+      .content {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        h1 {
+          font-family: $fontFamily; // Apply the new font family to h1
+          font-size: 48px;
+        }
+
+        p {
+          font-family: $fontFamily; // Apply the new font family to p
+          font-size: 18px;
+        }
+
+        button {
+          width: max-content;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+          background-color: white;
+          border: 1px solid teal;
+          color: teal;
+
+          &:hover {
+            border: 1px solid white;
+            background-color: $lightGreen;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Styles for the single post page
+.single {
+  display: flex;
+  gap: 50px;
+
+  .content {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .edit {
+      display: flex;
+      gap: 5px;
+
+      img {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+
+    h1 {
+      font-family: $fontFamily; // Apply the new font family to h1
+      font-size: 42px;
+      color: #333;
+    }
+
+    p {
+      font-family: $fontFamily; // Apply the new font family to p
+      text-align: justify;
+      line-height: 30px;
+    }
+  }
+  .menu {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    h1 {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .post {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      h2 {
+        color: #555;
+      }
+
+      button {
+        width: max-content;
+        padding: 7.5px 15px;
+        border: none;
+        cursor: pointer;
+        color: teal;
+        background-color: white;
+        border: 1px solid teal;
+
+        &:hover {
+          border: 1px solid white;
+          background-color: $lightGreen;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+// Styles for the write page
+
+.add {
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: $backgroundColor;
+  border-radius: $borderRadius;
+  box-shadow: $shadow;
+
+  .content {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input {
+      font-family: $fontFamily;
+      font-size: $fontSizeMedium;
+      padding: 10px;
+      border: 1px solid $borderColor;
+      border-radius: $borderRadius;
+      background-color: $inputBackground;
+      transition: $transition;
+
+      &:focus {
+        border-color: $inputFocusBorder;
+        outline: none;
+      }
+    }
+
+    .editorContainer {
+      height: 300px;
+      overflow: auto;
+      border: 1px solid $borderColor;
+      border-radius: $borderRadius;
+
+      .editor {
+        height: 100%;
+        padding: 10px;
+        border: none;
+        font-family: $fontFamily;
+      }
+    }
+  }
+
+  .menu {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .item {
+      background-color: $inputBackground;
+      border: 1px solid $borderColor;
+      border-radius: $borderRadius;
+      padding: 20px;
+      box-shadow: $shadow;
+
+      h1 {
+        font-size: $fontSizeLarge;
+        color: $textColor;
+        margin-bottom: 10px;
+      }
+
+      span {
+        display: block;
+        font-size: $fontSizeSmall;
+        margin-bottom: 10px;
+
+        b {
+          color: $textColor;
+        }
+      }
+
+      .file {
+        font-size: $fontSizeSmall;
+        text-decoration: none;
+        color: $primaryColor;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+
+        button {
+          flex: 1;
+          padding: 8px 12px;
+          font-size: $fontSizeMedium;
+          border: none;
+          border-radius: $borderRadius;
+          cursor: pointer;
+          transition: $transition;
+
+          &:first-child {
+            background-color: $buttonSecondary;
+            color: $inputBackground;
+
+            &:hover {
+              background-color: $buttonSecondary;
+            }
+          }
+
+          &:last-child {
+            background-color: $buttonPrimary;
+            color: $inputBackground;
+
+            &:hover {
+              background-color: $buttonPrimary;
+            }
+          }
+        }
+      }
+
+      .cat {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: $fontSizeSmall;
+        color: $textColor;
+
+        label {
+          cursor: pointer;
+        }
+
+        input[type="radio"] {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
