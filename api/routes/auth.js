@@ -1,6 +1,7 @@
 import express from "express"; // Import the Express framework
 import { register, login, logout, googleAuth, googleCallback, googleRedirect, getGoogleUser, googleLogout } from "../controllers/auth.js"; // Import authentication controller functions
 
+
 const router = express.Router(); // Create a new instance of an Express router
 
 // Route for user registration

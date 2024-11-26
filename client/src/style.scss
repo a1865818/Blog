@@ -60,7 +60,7 @@ body {
   }
 
   h1 {
-    font-family: $fontFamily; // Apply the new font family to h1
+    font-family: $fontFamily; 
     font-size: 20px;
     color: teal;
     margin-bottom: 20px;
@@ -137,7 +137,7 @@ body {
        position: relative;
        
        h6 {
-         font-family: $fontFamily; // Apply the new font family to h6
+         font-family: $fontFamily; 
          font-size: 14px;
          font-weight: 500;
          color: $textColor;
@@ -306,7 +306,7 @@ footer {
   font-size: 14px; 
 
   span {
-    font-family: $fontFamily; // Apply the new font family to span
+    font-family: $fontFamily; 
     text-align: center; 
     font-size: 18px; 
     color: $textColor; 
@@ -364,12 +364,12 @@ footer {
         justify-content: space-between;
 
         h1 {
-          font-family: $fontFamily; // Apply the new font family to h1
+          font-family: $fontFamily; 
           font-size: 48px;
         }
 
         p {
-          font-family: $fontFamily; // Apply the new font family to p
+          font-family: $fontFamily; 
           font-size: 18px;
         }
 
@@ -439,13 +439,12 @@ footer {
     }
 
     h1 {
-      font-family: $fontFamily; // Apply the new font family to h1
-      font-size: 42px;
+      font-family: $fontFamily; 
       color: #333;
     }
 
     p {
-      font-family: $fontFamily; // Apply the new font family to p
+      font-family: $fontFamily;
       text-align: justify;
       line-height: 30px;
     }

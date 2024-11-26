@@ -107,6 +107,9 @@ Thumbs.db
 *.key
 *.pem
 
+# ignore client_google_api.json
+client_google_api.json
+
 # --------------------------------------------------------
 # BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
 # --------------------------------------------------------
@@ -119,3 +122,4 @@ Thumbs.db
 !.gitignore
 !.nvmrc
 !.phpcs.xml.dist
+

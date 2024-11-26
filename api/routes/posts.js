@@ -3,10 +3,6 @@ import { getPost, getPosts, addPost, updatePost, deletePost } from "../controlle
 
 const router = express.Router(); // Create a new instance of an Express router
 
-// Test route for adding a post
-// This is for testing purposes and calls the `addPost` function
-router.get("/test", addPost);
-
 // Route to fetch all posts
 // Handles GET requests to the root "/" endpoint and calls the `getPosts` function from the post controller
 router.get("/", getPosts);

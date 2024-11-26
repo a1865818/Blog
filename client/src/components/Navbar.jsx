@@ -10,6 +10,10 @@ const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
   const [googleUser, setGoogleUser] = useState(null);
 
+  // This effect runs only when the currentUser changes
+  // The effect fetches the Google user data if the user is authenticated
+  // The Google user data is stored in the googleUser state
+  // The effect runs only once when the component mounts
   useEffect(() => {
     const fetchGoogleUser = async () => {
       try {

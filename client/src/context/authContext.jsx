@@ -19,18 +19,6 @@ export const AuthProvider = ({ children }) => {
     setCurrentUser(res.data);
   };
 
-  // Login with Google function to handle user authentication via Google
-  const loginWithGoogle = async (googleUser) => {
-    try {
-      const res = await axios.post("/api/auth/google", {
-        token: googleUser.tokenId,
-      });
-      setCurrentUser(res.data.user);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   // Logout function to handle user logout
   const logout = async () => {
     // Make an API request to log out the user

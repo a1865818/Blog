@@ -10,7 +10,6 @@ import { fileURLToPath } from "url"; // Import for getting file URL
 import { dirname } from "path"; // Import for getting directory name
 import passport from "passport"; // Import passport for authentication
 import session from "express-session"; // Import express-session for session management
-import { db } from "./db.js"; // Import the database connection
 
 // Set up directory name and file name references
 const __filename = fileURLToPath(import.meta.url); 
@@ -34,6 +33,8 @@ app.use(session({
   cookie: { secure: false } // Set to true if using HTTPS
 }));
 
+// passport middleware
+// Initialize passport and restore authentication state from session
 app.use(passport.initialize());
 app.use(passport.session());
 

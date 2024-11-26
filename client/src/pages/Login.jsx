@@ -17,7 +17,7 @@ const Login = () => {
   // useNavigate hook to programmatically navigate after successful login
   const navigate = useNavigate();
 
-  // Destructure the 'login' function from AuthContext
+  // Access the login function from the AuthContext
   const { login } = useContext(AuthContext);
 
 

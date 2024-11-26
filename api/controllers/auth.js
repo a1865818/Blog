@@ -136,35 +136,51 @@ passport.use(new GoogleStrategy({
     }
   });
 }));
-
+// Serialize the user information into the session.
+// This determines what data of the user should be stored in the session.
 passport.serializeUser((user, done) => {
+  // saves the entire user object to the session store.
   done(null, user);
 });
 
+// Deserialize the user from the session.
+// This allows the user object to be retrieved for subsequent requests.
 passport.deserializeUser((user, done) => {
+  // retrieves the user object from the session store.
   done(null, user);
 });
 
+// Middleware to initiate Google authentication.
+// The "scope" specifies the information we are requesting from Google (profile and email).
 export const googleAuth = passport.authenticate("google", { scope: ["profile", "email"] });
 
+// Middleware to handle the Google OAuth callback after user consent.
+// If authentication fails, redirect the user to the login page.
 export const googleCallback = passport.authenticate("google", {
-  failureRedirect: "http://localhost:5173/login",
+  failureRedirect: "http://localhost:5173/login", // Redirect to the login page on failure.
 });
 
+// Controller to handle successful authentication and redirect the user.
+// Adds the user's token as a cookie for client-side use.
 export const googleRedirect = (req, res) => {
   res.cookie("access_token", req.user.token, {
-    httpOnly: true,
+    httpOnly: true, // Makes the cookie inaccessible via JavaScript for security purposes.
   });
-  res.redirect("http://localhost:5173/");
+  res.redirect("http://localhost:5173/"); // Redirects the user to the main page of the client.
 };
 
+// Controller to fetch the authenticated Google user.
+// Returns the user information if authenticated, or a message if not.
 export const getGoogleUser = (req, res) => {
   if (req.user) {
+    // If user is authenticated, respond with the user information.
     res.status(200).json(req.user);
   } else {
+    // If not authenticated, respond with an appropriate message.
     res.status(200).json({ message: "Not authenticated" });
   }
 };
+
 
 export const googleLogin = async (req, res) => {
   const { token } = req.body;
