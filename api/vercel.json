@@ -1,27 +1,26 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      }
-    ],
     "routes": [
       {
-        "src": "/posts/(.*)",
+        "src": "/api/posts",
         "dest": "/api/routes/posts.js"
       },
       {
-        "src": "/auth/(.*)",
+        "src": "/api/users",
+        "dest": "/api/routes/users.js"
+      },
+      {
+        "src": "/api/auth",
         "dest": "/api/routes/auth.js"
       },
       {
-        "src": "/upload",
+        "src": "/api/upload",
         "dest": "/api/index.js"
       },
       {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "/api/index.js"
       }
     ]
-}
+  }
+  
