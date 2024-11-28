@@ -1,10 +1,13 @@
 import pg from "pg"; // Import the `pg` module to interact with PostgreSQL
+import dotenv from "dotenv"; // Import dotenv for environment variables
+
+dotenv.config(); // Load environment variables from .env file
 
 // Create a new connection pool for the PostgreSQL database
 export const db = new pg.Pool({
-  user: "postgres", // Database username
-  host: "localhost", // Host where the database server is running 
-  password: "123456", // Password for the database user
-  database: "blog", // Name of the database to connect to
-  port: 5432, // Port number for the PostgreSQL server 
+  user: process.env.DB_USER, // Use environment variable for database username
+  host: process.env.DB_HOST, // Use environment variable for database host
+  password: process.env.DB_PASSWORD, // Use environment variable for database password
+  database: process.env.DB_NAME, // Use environment variable for database name
+  port: process.env.DB_PORT, // Use environment variable for database port
 });

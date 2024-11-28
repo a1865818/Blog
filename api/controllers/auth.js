@@ -3,6 +3,9 @@ import { db } from '../db.js'; // Importing database connection
 import jwt from 'jsonwebtoken'; // Library for generating JSON Web Tokens (JWT)
 import passport from 'passport'; // Import passport for authentication
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'; // Import Google OAuth strategy
+import dotenv from "dotenv"; // Import dotenv for environment variables
+
+dotenv.config(); // Load environment variables from .env file
 
 /**
  * Register a new user
@@ -77,7 +80,7 @@ export const login = (req, res) => {
     }
 
     // Generate a JWT token with the user's ID
-    const token = jwt.sign({ id: data.rows[0].id }, "keySecret");
+    const token = jwt.sign({ id: data.rows[0].id }, process.env.JWT_SECRET); // Use environment variable for JWT secret
 
     // Exclude the password from the response for security reasons
     const { password, ...other } = data.rows[0];
@@ -110,9 +113,9 @@ export const googleLogout = (req, res) => {
 
 // Configure passport to use Google OAuth strategy
 passport.use(new GoogleStrategy({
-  clientID: "767355889701-2f0rjitkdrivb21g2bt6on1bocgbfq49.apps.googleusercontent.com",
-  clientSecret: "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",
-  callbackURL: "http://localhost:8800/api/auth/google/callback"
+  clientID: process.env.GOOGLE_CLIENT_ID, // Use environment variable for Google client ID
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Use environment variable for Google client secret
+  callbackURL: process.env.GOOGLE_CALLBACK_URL // Use environment variable for Google callback URL
 }, (accessToken, refreshToken, profile, done) => {
   // Logic to find or create a user in the database
   const q = "SELECT * FROM users WHERE email = $1";
@@ -120,7 +123,7 @@ passport.use(new GoogleStrategy({
     if (err) return done(err);
     if (data.rows.length > 0) {
       const user = data.rows[0];
-      const token = jwt.sign({ id: user.id }, "keySecret");
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET); // Use environment variable for JWT secret
       user.token = token;
       return done(null, user);
     } else {
@@ -129,7 +132,7 @@ passport.use(new GoogleStrategy({
       db.query(q, values, (err, data) => {
         if (err) return done(err);
         const user = data.rows[0];
-        const token = jwt.sign({ id: user.id }, "keySecret");
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET); // Use environment variable for JWT secret
         user.token = token;
         return done(null, user);
       });
@@ -198,7 +201,7 @@ export const googleLogin = async (req, res) => {
     if (data.rows.length > 0) {
       // User exists, return the user data
       const user = data.rows[0];
-      const token = jwt.sign({ id: user.id }, "keySecret");
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET); // Use environment variable for JWT secret
       res.cookie("access_token", token, { httpOnly: true }).status(200).json({ user });
     } else {
       // User does not exist, create a new user
@@ -207,7 +210,7 @@ export const googleLogin = async (req, res) => {
       db.query(q, values, (err, data) => {
         if (err) return res.status(500).json(err);
         const user = data.rows[0];
-        const token = jwt.sign({ id: user.id }, "keySecret");
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET); // Use environment variable for JWT secret
         res.cookie("access_token", token, { httpOnly: true }).status(200).json({ user });
       });
     }

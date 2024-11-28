@@ -10,6 +10,9 @@ import { fileURLToPath } from "url"; // Import for getting file URL
 import { dirname } from "path"; // Import for getting directory name
 import passport from "passport"; // Import passport for authentication
 import session from "express-session"; // Import express-session for session management
+import dotenv from "dotenv"; // Import dotenv for environment variables
+
+dotenv.config(); // Load environment variables from .env file
 
 // Set up directory name and file name references
 const __filename = fileURLToPath(import.meta.url); 
@@ -22,12 +25,12 @@ app.use(cors({
   origin: "http://localhost:5173", 
   credentials: true // Allow credentials
 })); // Enable CORS for the specified frontend URL
+
 app.use(express.json()); // Middleware to parse JSON bodies in requests
 app.use(cookieParser()); // Middleware to parse cookies
-
 // Configure express-session middleware
 app.use(session({
-  secret: "yourSecretKey", // Replace with a strong secret key
+  secret: process.env.SESSION_SECRET, // Use environment variable for session secret
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set to true if using HTTPS
@@ -37,7 +40,6 @@ app.use(session({
 // Initialize passport and restore authentication state from session
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Set up routes
 app.use("/api/posts", postRoutes); // Route group for post-related APIs
 app.use("/api/users", userRoutes); // Route group for user-related APIs
@@ -69,6 +71,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 
 // Start the server on port 8800
-app.listen(8800, () => {
-  console.log("Server is running on port 8800");
+app.listen(process.env.PORT || 8800, () => {
+  console.log(`Server is running on port ${process.env.PORT || 8800}`);
 });
