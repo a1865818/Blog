@@ -8,15 +8,15 @@
     ],
     "routes": [
       {
-        "src": "/api/posts/(.*)",
+        "src": "/posts/(.*)",
         "dest": "/api/routes/posts.js"
       },
       {
-        "src": "/api/auth/(.*)",
+        "src": "/auth/(.*)",
         "dest": "/api/routes/auth.js"
       },
       {
-        "src": "/api/upload",
+        "src": "/upload",
         "dest": "/api/index.js"
       },
       {
