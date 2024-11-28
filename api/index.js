@@ -45,6 +45,11 @@ app.use("/api/posts", postRoutes); // Route group for post-related APIs
 app.use("/api/users", userRoutes); // Route group for user-related APIs
 app.use("/api/auth", authRoutes); // Route group for authentication-related APIs
 
+// Handle the root path
+app.get("/", (req, res) => {
+  res.send("Welcome to the API");
+});
+
 // Configure storage settings for file uploads
 const storage = multer.diskStorage({
   // Specify the destination folder for uploaded files
