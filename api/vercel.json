@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/api/auth/(.*)",
-        "dest": "/api/index.js"
+        "dest": "/api/routes/auth.js"
       },
       {
         "src": "/api/posts/(.*)",
